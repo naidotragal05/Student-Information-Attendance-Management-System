@@ -1,0 +1,52 @@
+<main class="main">
+  <header class="topbar">
+    <h1 class="page-title">
+      Student Information &amp; Attendance Management System!
+    </h1>
+    <button class="logout-btn" (click)="onLogout()">Logout</button>
+  </header>
+
+  <!-- ROLE PICKER (Home) -->
+  <section class="role-picker-wrapper" *ngIf="activeSection === 'home'">
+    <div class="role-picker-card">
+      <h2>Pick your role</h2>
+
+      <div class="role-options">
+        <!-- Student card -->
+        <button class="role-option" type="button" (click)="setSection('student')">
+          <div class="role-avatar student-avatar">
+            <span>🎓</span>
+          </div>
+          <div class="role-text">
+            <span class="role-title">I'm a student</span>
+            <span class="role-desc">View your classes, grades, and attendance.</span>
+          </div>
+        </button>
+
+        <!-- Teacher card -->
+        <button class="role-option" type="button" (click)="setSection('teacher')">
+          <div class="role-avatar teacher-avatar">
+            <span>👩‍🏫</span>
+          </div>
+          <div class="role-text">
+            <span class="role-title">I'm a teacher</span>
+            <span class="role-desc">Manage classes, students, and attendance.</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+<!-- TEACHER CONTENT -->
+<section class="content" *ngIf="activeSection === 'teacher'">
+  <button class="back-btn" (click)="setSection('home')">⬅ Back to Dashboard</button>
+  <app-teacher></app-teacher>
+</section>
+
+<!-- STUDENT CONTENT -->
+<section class="content" *ngIf="activeSection === 'student'">
+  <button class="back-btn" (click)="setSection('home')">⬅ Back to Dashboard</button>
+  <app-student></app-student>
+</section>
+
+

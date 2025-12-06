@@ -1,0 +1,22 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+})
+export class Login {
+  username = '';
+  password = '';
+
+  constructor(private router: Router) {}
+
+  login() {
+    if (this.username === 'admin' && this.password === '1234') {
+      localStorage.setItem('loggedIn', 'true');
+      this.router.navigate(['/dashboard']); // go to dashboard
+    } else {
+      alert('Invalid username or password');
+    }
+  }
+}

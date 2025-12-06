@@ -1,0 +1,138 @@
+<div class="student-dashboard">
+
+  <h2>Student Dashboard</h2>
+
+  <div class="cards">
+
+    <!-- My Courses -->
+    <div class="card">
+      <h3>📚 My Courses</h3>
+      <p>View your enrolled courses and teacher assignments.</p>
+      <button (click)="viewCourses()">View Courses</button>
+    </div>
+
+    <!-- My Attendance (ATTENDANCE INSIDE THIS CARD) -->
+    <div class="card attendance-card">
+      <h3>📋 My Attendance</h3>
+      <p>Check your attendance records.</p>
+      <button (click)="viewAttendance()">View Attendance</button>
+
+      <!-- Attendance Records Section -->
+      <div *ngIf="showAttendance" class="attendance-section">
+        <h4>My Attendance Records</h4>
+        <div *ngFor="let record of attendanceRecords" class="attendance-record">
+          <strong>{{ record.subject }} - {{ record.date }}</strong>
+          <p>
+            Status:
+            <span
+              [class]="record.status === 'Present' ? 'present' : 'absent'"
+            >
+              {{ record.status }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Grades -->
+    <div class="card">
+      <h3>📊 My Grades</h3>
+      <p>View your grades and performance.</p>
+      <button (click)="viewGrades()">View Grades</button>
+    </div>
+
+    <!-- Class Schedule (SCHEDULE INSIDE THIS CARD) -->
+    <div class="card schedule-card">
+      <h3>📅 Class Schedule</h3>
+      <p>Check your subject schedule and teacher assignments.</p>
+      <button (click)="viewSchedule()">View Schedule</button>
+
+      <!-- Schedule Section -->
+      <div *ngIf="showSchedule" class="schedule-section">
+        <h4>My Class Schedule</h4>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Subject</th>
+              <th>Teacher</th>
+              <th>Room</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let classItem of schedule">
+              <td>{{ classItem.time }}</td>
+              <td>{{ classItem.subject }}</td>
+              <td>{{ classItem.teacher }}</td>
+              <td>{{ classItem.room }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Profile (PROFILE FORM INSIDE THIS CARD) -->
+    <div class="card profile-card">
+      <h3>👤 Profile</h3>
+      <p>Update your personal profile information.</p>
+      <button (click)="editProfile()">Edit Profile</button>
+
+      <!-- Profile Edit Section -->
+      <div *ngIf="showProfile" class="profile-section">
+        <h4>Edit Profile</h4>
+        <form (ngSubmit)="updateProfile()">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="profile.name"
+            name="name"
+            readonly
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="profile.email"
+            name="email"
+          />
+
+          <label for="phone">Phone:</label>
+          <input
+            type="tel"
+            id="phone"
+            [(ngModel)]="profile.phone"
+            name="phone"
+          />
+
+          <button type="submit" class="profile-submit-btn">
+            Update Profile
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Announcements (ANNOUNCEMENTS INSIDE THIS CARD) -->
+    <div class="card announcements-card">
+      <h3>📢 Announcements</h3>
+      <p>View general school announcements and notifications.</p>
+      <button (click)="viewAnnouncements()">View Announcements</button>
+
+      <!-- Announcements Section -->
+      <div *ngIf="showAnnouncements" class="announcements-section">
+        <h4>School Announcements</h4>
+        <div
+          *ngFor="let announcement of announcements"
+          class="announcement"
+        >
+          <strong>{{ announcement.title }}</strong>
+          <p>{{ announcement.content }}</p>
+          <small>{{ announcement.date }}</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

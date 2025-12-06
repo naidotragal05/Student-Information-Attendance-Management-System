@@ -1,0 +1,130 @@
+.teacher-dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teacher-dashboard h2 {
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Generic card styling */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.card button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 5px;
+}
+
+.card button:hover {
+  background: #0056b3;
+}
+
+.card button[routerLink] {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+/* ===== Record Attendance Card & Form ===== */
+
+.record-attendance-card .attendance-section {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.attendance-section form {
+  margin-top: 10px;
+}
+
+.attendance-section label {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.attendance-section select {
+  margin-top: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.student-attendance {
+  margin-top: 6px;
+}
+
+.student-attendance input[type="checkbox"] {
+  margin-left: 8px;
+  margin-right: 4px;
+}
+
+.submit-attendance-btn {
+  margin-top: 12px;
+}
+
+/* ===== Attendance Lists inside card ===== */
+
+.attendance-lists-card .attendance-lists {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.attendance-record {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-top: 10px;
+}
+
+/* ===== Reports inside card ===== */
+
+.reports-card .reports {
+  margin-top: 15px;
+  text-align: left;
+}
+
+.report-card {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  margin-top: 10px;
+}

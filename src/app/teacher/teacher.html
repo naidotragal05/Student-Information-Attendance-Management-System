@@ -1,0 +1,120 @@
+<div class="teacher-dashboard">
+
+  <h2>Teacher Dashboard</h2>
+
+  <!-- CARDS GRID -->
+  <div class="cards">
+
+    <!-- My Classes -->
+    <div class="card">
+      <h3>📚 My Classes</h3>
+      <p>View classes assigned to you.</p>
+      <button (click)="viewClasses()">View Classes</button>
+    </div>
+
+    <!-- Record Attendance (FORM INSIDE THIS CARD) -->
+    <div class="card record-attendance-card">
+      <h3>📋 Record Attendance</h3>
+      <p>Take attendance for your classes.</p>
+
+      <button type="button" (click)="showAttendanceForm = !showAttendanceForm">
+        {{ showAttendanceForm ? 'Hide Attendance' : 'Record Attendance' }}
+      </button>
+
+      <div *ngIf="showAttendanceForm" class="attendance-section">
+        <form (ngSubmit)="submitAttendance()">
+          <label for="classSelect">Select Class:</label>
+          <select
+            id="classSelect"
+            [(ngModel)]="selectedClass"
+            name="selectedClass"
+          >
+            <option value="">Choose a class</option>
+            <option
+              *ngFor="let classItem of classes"
+              [value]="classItem.id"
+            >
+              {{ classItem.name }}
+            </option>
+          </select>
+
+          <div
+            *ngFor="let student of students"
+            class="student-attendance"
+          >
+            <label>
+              {{ student.name }}
+              <input
+                type="checkbox"
+                [(ngModel)]="student.present"
+                name="present-{{ student.id }}"
+              />
+              <span>Present</span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-attendance-btn">
+            Submit Attendance
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- View Attendance Lists (LISTS INSIDE THIS CARD) -->
+    <div class="card attendance-lists-card">
+      <h3>📊 View Attendance Lists</h3>
+      <p>Access and update daily attendance lists.</p>
+
+      <button type="button" (click)="showAttendanceLists = !showAttendanceLists">
+        {{ showAttendanceLists ? 'Hide Lists' : 'View Attendance Lists' }}
+      </button>
+
+      <div *ngIf="showAttendanceLists" class="attendance-lists">
+        <div *ngFor="let record of attendanceRecords" class="attendance-record">
+          <h4>{{ record.className }} - {{ record.date }}</h4>
+          <ul>
+            <li *ngFor="let student of record.students">
+              {{ student.name }}: {{ student.present ? 'Present' : 'Absent' }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Records -->
+    <div class="card">
+      <h3>📈 Class Records</h3>
+      <p>Access your class records and summaries.</p>
+      <button (click)="viewClassRecords()">View Class Records</button>
+    </div>
+
+    <!-- Generate Reports (REPORTS INSIDE THIS CARD) -->
+    <div class="card reports-card">
+      <h3>📄 Generate Reports</h3>
+      <p>Generate basic attendance reports for your subjects.</p>
+
+      <button type="button" (click)="showReports = !showReports">
+        {{ showReports ? 'Hide Reports' : 'Generate Reports' }}
+      </button>
+
+      <div *ngIf="showReports" class="reports">
+        <div *ngFor="let report of reports" class="report-card">
+          <h4>{{ report.subject }} Report</h4>
+          <p>Total Students: {{ report.totalStudents }}</p>
+          <p>Present: {{ report.present }}</p>
+          <p>Absent: {{ report.absent }}</p>
+          <p>Attendance Rate: {{ report.rate }}%</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Students -->
+    <div class="card">
+      <h3>👨‍🎓 Students</h3>
+      <p>View student information.</p>
+      <button (click)="viewStudents()">View Students</button>
+    </div>
+
+  </div>
+
+</div>
